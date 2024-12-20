@@ -2,6 +2,7 @@ import "./Livechat.css"
 import {useCallback, useEffect, useRef, useState} from "react";
 import {useWebSocketContext} from "../../utils/websocketContext.jsx";
 import {getCookie, setCookie} from '../../utils/cookies';
+import ActiveUsers from "../activeUsers/ActiveUsers.jsx";
 
 function Livechat() {
     const [messages, setMessages] = useState([]);
@@ -98,9 +99,21 @@ function Livechat() {
 
     return (
         <div className={"liveChatBox"}>
-            <div className="liveChatHeader">
-                PLUTA LIVECHAT
+
+            <div className={"liveChatHeaderBar"}>
+                <div className={"activeUsersCount"}>
+                    <ActiveUsers/>
+                </div>
+
+                <div className={"liveChatHeaderDivider"}>
+                    
+                </div>
+
+                <div className="liveChatHeader">
+                    PLUTA LIVECHAT
+                </div>
             </div>
+
             <div className={"chat"} id={"chat"} onScroll={scrollEvent}>
                 {messages.map((m, i) => {
                     const date = new Date(Date.parse(m.timestamp));

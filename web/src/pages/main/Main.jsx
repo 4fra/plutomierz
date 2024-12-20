@@ -5,7 +5,6 @@ import PlutaTimer from "../../components/plutaTimer/PlutaTimer.jsx";
 import Background from "../../components/background/Background.jsx";
 import Sponsors from "../sponsors/Sponsors.jsx";
 import Livechat from "../../components/livechat/Livechat.jsx";
-import ActiveUsers from "../../components/activeUsers/ActiveUsers.jsx";
 
 function Main() {
 
@@ -13,7 +12,6 @@ function Main() {
         <div className={"main"}>
             <Background/>
 
-            <ActiveUsers/>
 
             <div className={"splashContainer"}>
                 <Splash/>
