@@ -68,7 +68,7 @@ const getPlutaValue = async (latitude: number, longitude: number) => {
 
     // breaks
     multipliers["break"] = 20
-    bonuses["break"] = calcBreakFactor(time) * multipliers["break"]
+    bonuses["break"] = calcBreakFactor(time, day) * multipliers["break"]
 
     // days
     multipliers["day"] = 8
