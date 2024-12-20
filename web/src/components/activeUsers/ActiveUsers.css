@@ -1,0 +1,33 @@
+.activeUsers {
+    display: flex;
+    float: left;
+    height: 3.5rem;
+    width: 3.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.activeUsers img {
+    width: 100%;
+    height: 100%;
+}
+
+.activeUsersCount {
+    position: relative;
+    align-items: center;
+    color: black;
+    font-size: 1rem;
+    font-family: Impact, serif;
+}
+
+.activeUsersCountBox {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0.25rem;
+}

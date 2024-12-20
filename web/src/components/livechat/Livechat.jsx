@@ -2,6 +2,7 @@ import "./Livechat.css"
 import {useCallback, useEffect, useRef, useState} from "react";
 import {useWebSocketContext} from "../../utils/websocketContext.jsx";
 import {getCookie, setCookie} from '../../utils/cookies';
+import ActiveUsers from "../activeUsers/ActiveUsers.jsx";
 
 function Livechat() {
     const [messages, setMessages] = useState([]);
@@ -83,7 +84,7 @@ function Livechat() {
     )
 
     const scrollEvent = () => {
-        const scrollTop = document.getElementsByClassName("chat").scrollTop;
+        const scrollTop = document.getElementById("chat").scrollTop;
         setScrollLast(scrollTop);
         if (scrollLast > scroll) {
             setScroll(scrollTop)
@@ -98,17 +99,36 @@ function Livechat() {
 
     return (
         <div className={"liveChatBox"}>
-            <div className="liveChatHeader">
-                PLUTA LIVECHAT
+
+            <div className={"liveChatHeaderBar"}>
+                <div className={"activeUsersCount"}>
+                    <ActiveUsers/>
+                </div>
+
+                <div className={"liveChatHeaderDivider"}>
+                    
+                </div>
+
+                <div className="liveChatHeader">
+                    PLUTA LIVECHAT
+                </div>
             </div>
-            <div className={"chat"} onScroll={scrollEvent}>
-                {messages.map((m, i) => (
-                    <div key={i} className={"message"}>
-                        {/*<span className={"timeStamp"}>00:00</span>*/}
-                        <span className={"username"}>{m.username}:</span>
-                        <span className={"text"}>{m.text}</span>
-                    </div>
-                ))}
+
+            <div className={"chat"} id={"chat"} onScroll={scrollEvent}>
+                {messages.map((m, i) => {
+                    const date = new Date(Date.parse(m.timestamp));
+                    const hour = date.getHours();
+                    const minute = date.getMinutes();
+
+                    return (
+                        <div key={i} className={"message"}>
+                            <span className={"timeStamp"}>{hour < 10 ? "0" + hour : hour}:{minute < 10 ? "0" + minute : minute}</span>
+                            &nbsp;
+                            <span className={"username"}>{m.username}:</span>
+                            <span className={"text"}>{m.text}</span>
+                        </div>
+                    )
+                })}
                 <div ref={chatEndRef}/>
             </div>
             <div className="inputContainer">

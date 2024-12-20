@@ -8,16 +8,16 @@ const regularBreaks = [
     [1250, 1300], [1345, 1355], [1440, 1450], [1535, 1545]
 ];
 
-export default function calcBreakFactor(time: number): number {
+export default function calcBreakFactor(time: number, day: number): number {
     const longBreakFactorial = 1;
     const almostLongBreakFactorial = 0.5;
     const shortBreakFactorial = 0.25;
 
     if (LONG_BREAK_START <= time && time <= LONG_BREAK_END) {
-        return longBreakFactorial;
+        return day >= 5 ? longBreakFactorial : (longBreakFactorial/2);
     } else if ((ALMOST_LONG_BREAK_START <= time && time < LONG_BREAK_START) || (LONG_BREAK_END < time && time <= ALMOST_LONG_BREAK_END)) {
-        return almostLongBreakFactorial;
-    } else {
+        return day >= 5 ? almostLongBreakFactorial : (almostLongBreakFactorial/2);
+    } else if (day >= 5) {
         for (const [start, end] of regularBreaks) {
             if (start <= time && time <= end) {
                 return shortBreakFactorial;

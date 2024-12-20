@@ -16,19 +16,48 @@
     --scrollHover: #d9200f;
 }
 
+.liveChatHeaderBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: var(--paddingAndMargin);
+    padding-right: var(--paddingAndMargin);
+    height: 5rem;
+}
+
 .liveChatHeader {
+    flex-grow: 1;
     text-align: center;
-    margin-top: var(--paddingAndMargin);
     color: var(--scrollHover);
     font-family: Impact, sans-serif;
     font-size: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.activeUsersCount {
+    height: 40px;
+    justify-content: left;
+    text-align: center;
+    display: flex;
+}
+
+.liveChatHeaderDivider {
+    height: 75%;
+    width: 0.25rem;
+    justify-content: left;
+    text-align: center;
+    display: flex;
+    background: var(--primaryBg);
+    margin: var(--paddingAndMargin);
 }
 
 .chat {
     flex: 1;
     background-color: var(--primaryBg);
     padding: var(--borderRadius);
-    margin-top: var(--borderRadius);
     overflow-y: auto;
     width: 100%;
 
@@ -62,19 +91,20 @@
     font-size: 1.2rem;
     text-align: left;
     padding: 5px;
+    word-break: break-word;
 }
 
 .timeStamp {
-    width: 5rem;
+    width: 4rem;
     height: 1.2rem; /* Match font size */
-    display: inline-block;
     float: left;
+    color: gray;
 }
 
 .username {
     color: var(--scrollHover);
     font-weight: bold;
-    margin-right: 20px;
+    margin-right: 0.6rem;
 }
 
 .text {
