@@ -76,6 +76,7 @@ class MainActivity : ComponentActivity() {
             var plutaLog by remember { mutableStateOf<List<Pair<Double, String>>?>(null) }
             var switchCount by remember { mutableIntStateOf(0) }
             var firstSwitchTime by remember { mutableLongStateOf(0L) }
+            var eventDescription by remember { mutableStateOf<String?>(null) }
 
             webSocketHandler = WebSocketHandler(
                 onMessageReceived = { text ->
@@ -122,6 +123,12 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
                             plutaLog = log
+                        }
+
+                        "currentEventDescription" -> {
+                            val title = json.getString("title")
+                            val description = json.getString("description")
+                            eventDescription = "$title: $description"
                         }
                     }
                 },
@@ -186,7 +193,15 @@ class MainActivity : ComponentActivity() {
                             contentAlignment = Alignment.TopCenter
                         ) {
                             if (plutaLog == null) {
-                                MotivationalText()
+                                if (eventDescription != null) {
+                                    Text(
+                                        text = eventDescription!!,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        modifier = Modifier.padding(16.dp)
+                                    )
+                                } else {
+                                    MotivationalText()
+                                }
                                 Box(
                                     modifier = Modifier
                                         .height(300.dp)
@@ -222,7 +237,7 @@ class MainActivity : ComponentActivity() {
                             Spacer(modifier = Modifier.width(8.dp))
                             Icon(
                                 imageVector = Icons.Default.Person,
-                                contentDescription = "Active Users",
+                                contentDescription = "Aktywni osoby",
                                 tint = MaterialTheme.colorScheme.secondary
                             )
                             Spacer(modifier = Modifier.width(4.dp))
