@@ -44,7 +44,9 @@ wss.on('connection', async (ws: WebSocket) => {
 
     // send current event title and description
     const eventTitleAndDescription = await getCurrentEventTitleAndDescription();
-    ws.send(JSON.stringify({type: 'currentEventDescription', title: eventTitleAndDescription.title, description: eventTitleAndDescription.description}));
+    if(eventTitleAndDescription.title){
+        ws.send(JSON.stringify({type: 'currentEventDescription', title: eventTitleAndDescription.title, description: eventTitleAndDescription.description}));
+    }
 
     // handle incoming messages
     ws.on('message', async (data: string) => {
