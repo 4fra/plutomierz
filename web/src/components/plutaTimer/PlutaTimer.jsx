@@ -22,9 +22,9 @@ function PlutaTimer() {
     useEffect(() => {
         const countdown = ((11 - hour) * 60) + 45 - minute;
 
-        if (day === 6 || day === 0) {
+        if (day === 6 || day === 0 || (day === 5 && countdown <= -20)) {
             setStatusSkrotu("Weekend. Do zobaczenia w poniedziałek na skrócie!");
-        } else if (countdown <= 660 && countdown > 0) {
+        } else if (countdown <= 705 && countdown > 0) {
             setStatusSkrotu("Panowie, za " + countdown + " minut Skrót Pluty!");
         } else if (countdown <= 0 && countdown > -20) {
             setStatusSkrotu("WSZYSCY NA SKRÓT PLUTY!!!");
