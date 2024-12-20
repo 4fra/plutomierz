@@ -34,23 +34,7 @@ const getLastEventsFromDb = async (): Promise<Event[]> => {
             created_at: new Date(event.created_at)
         })).reverse();
 
-        // IF YOU DON'T WANT TO REMOVE EXPIRED EVENTS, REMOVE THE FOLLOWING CODE
-        const validEvents: Event[] = [];
-
-        // remove expired events
-        for (let event of events) {
-            if (event.date_end < new Date()) {
-                await db.run(`
-                    DELETE FROM events
-                    WHERE id = ?
-                `, [event.id]);
-            } else {
-                validEvents.push(event);
-            }
-        }
-        // KEEP THE CODE BELOW
-
-        return validEvents.reverse();
+        return events;
 
     } catch (error) {
         console.error('Failed to fetch events:', error);
