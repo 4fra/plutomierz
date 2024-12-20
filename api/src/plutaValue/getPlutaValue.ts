@@ -170,7 +170,7 @@ const getPlutaValue = async (latitude: number, longitude: number) => {
 
     plutaValue = await accountEvents(plutaValue);
 
-    plutaValue += await accountVotes(plutaValue);
+    plutaValue = await accountVotes(plutaValue);
 
     plutaValue = Math.round(plutaValue * 10) / 10;
 
