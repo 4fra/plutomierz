@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useWebSocketContext} from '../../utils/websocketContext.jsx';
-import './activeUsers.css';
+import './ActiveUsers.css';
 
 const ActiveUsers = () => {
     const {sendMessage, lastMessage} = useWebSocketContext();
