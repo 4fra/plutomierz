@@ -14,9 +14,12 @@ function Splash() {
     }, []);
 
     useEffect(() => {
-        if (lastMessage !== null && JSON.parse(lastMessage.data).type === 'currentEventDescription') {
-            setSplashText("EVENT: "+JSON.parse(lastMessage.data).description);
-            console.log(JSON.parse(lastMessage.data))
+        if (lastMessage !== null &&
+            JSON.parse(lastMessage.data).type === 'currentEventDescription' &&
+            JSON.parse(lastMessage.data).title !== "" &&
+            JSON.parse(lastMessage.data).description !== "")
+        {
+            setSplashText(JSON.parse(lastMessage.data).description);
         }
     }, [lastMessage]);
 

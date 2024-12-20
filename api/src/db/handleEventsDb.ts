@@ -24,7 +24,7 @@ const getLastEventsFromDb = async (): Promise<Event[]> => {
         let events = await db.all<Event[]>(`
             SELECT id, user_id, title, description, date_start, date_end, plutaMultiplier, plutaBonus, created_at
             FROM events
-            ORDER BY date_start DESC
+            ORDER BY date_start
         `);
 
         events = (events as Event[]).map(event => ({
@@ -45,8 +45,6 @@ const getLastEventsFromDb = async (): Promise<Event[]> => {
 const getCurrentEventTitleAndDescription = async (): Promise<{ description: string; title: string }> => {
     const events = await getLastEventsFromDb();
     const now = new Date();
-
-    console.log(events)
 
     for (let event of events) {
         if (event.date_start < now && now < event.date_end) {
