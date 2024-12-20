@@ -8,6 +8,7 @@ import broadcastActiveUsersCount from "./utils/activeUsersCount";
 import handleChatMessage from './utils/handleChatMessage';
 import handleGetPlutaLog from './utils/handleGetPlutaLog';
 import {savePlutaToDb} from "../db/plutaLogDb";
+import {getCurrentEventTitleAndDescription} from "../db/handleEventsDb";
 
 // pluta value
 updatePlutaValue().then(r => r);
@@ -40,6 +41,10 @@ wss.on('connection', async (ws: WebSocket) => {
     } catch (error) {
         ws.send(JSON.stringify({type: 'error', message: 'Failed to fetch message history'}));
     }
+
+    // send current event title and description
+    const eventTitleAndDescription = await getCurrentEventTitleAndDescription();
+    ws.send(JSON.stringify({type: 'currentEventDescription', title: eventTitleAndDescription.title, description: eventTitleAndDescription.description}));
 
     // handle incoming messages
     ws.on('message', async (data: string) => {
