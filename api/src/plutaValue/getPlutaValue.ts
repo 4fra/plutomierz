@@ -68,7 +68,7 @@ const getPlutaValue = async (latitude: number, longitude: number) => {
 
     // breaks
     multipliers["break"] = 20
-    bonuses["break"] = calcBreakFactor(time) * multipliers["break"]
+    bonuses["break"] = calcBreakFactor(time, day) * multipliers["break"]
 
     // days
     multipliers["day"] = 8
@@ -152,7 +152,7 @@ const getPlutaValue = async (latitude: number, longitude: number) => {
     bonuses["plutaTime"] = plutaTimeFactorWithoutPlutaConcentration * multipliers["plutaTime"]
 
     // base pluta to make overall plutas higher
-    const basePluta = 17.5;
+    const basePluta = 15;
 
     let maxPluta = 0
     for (const multiplier in multipliers) {
